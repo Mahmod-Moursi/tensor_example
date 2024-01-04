@@ -1,14 +1,15 @@
 
-#pragma once //ensures the header file is only included once in a translation unit.
+#pragma once // Ensures the header file is only included once in a translation unit.
 
-#include <iostream> //C++ Standard Library's iostream header, cout and cin
-#include <memory> //provides facilities for dynamic memory allocation and smart pointers.
-#include <stdexcept> //standard exception classes  like std::logic_error and std::runtime_error, that can be used for exception handling.
-#include <vector> //provides the std::vector template class. Vectors are dynamic arrays that can grow or shrink in size. 
-#include <fstream>
-#include <sstream>
+#include <iostream> // C++ Standard Library's iostream header, cout and cin
+#include <memory>    // Provides facilities for dynamic memory allocation and smart pointers.
+#include <stdexcept> // Standard exception classes like std::logic_error and std::runtime_error, used for exception handling.
+#include <vector>    // Provides the std::vector template class, dynamic arrays that can grow or shrink in size.
+#include <fstream>   // Input/output stream class to operate on files.
+#include <sstream>   // Input/output stream class to operate on strings.
 
 
+// Concept to express requirements on template arguments.
 template< class T >
 concept Arithmetic = std::is_arithmetic_v< T >; //Concept is a way to express requirements on template arguments.  this concept takes a type parameter T. checks if the type T is arithmetic like int, float, etc.
 
@@ -164,6 +165,7 @@ In summary, the use of std::exchange for rank is a more defensive approach, ensu
         return element[linearIndex];
     }
 
+    // Friend functions for file I/O
     friend Tensor<ComponentType> readTensorFromFile<>(const std::string& filename);
     friend void writeTensorToFile<>(const Tensor<ComponentType>& tensor, const std::string& filename);
 
@@ -172,7 +174,7 @@ private:
     // TODO: Probably you need some members here...
     int T_rank;      // Rank of the tensor, The rank is a variable that represents the "dimensionality" or "number of indices" of the tensor.
     ComponentType ele;
-    std::vector<ComponentType> element; // Element of the tensor -- was double
+    std::vector<ComponentType> element; // Element of the tensor
     std::vector< size_t > shape;
 };
 
