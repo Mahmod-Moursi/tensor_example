@@ -14,6 +14,14 @@ void check(bool condition, const std::string& msg)
     }
 }
 
+/*
+Reads a matrix A from the file "data/matrix".
+Reads a vector x from the file "data/vector_in".
+Reads the expected result vector y_read from the file "data/vector_out".
+Computes the result vector y_comp using the matvec function.
+Compares the computed result y_comp with the expected result y_read.
+*/
+
 void test_matvec(std::vector< std::pair< bool, std::string > >& results)
 {
 
@@ -21,7 +29,8 @@ void test_matvec(std::vector< std::pair< bool, std::string > >& results)
     Vector< int > x("data/vector_in");
     Vector< int > y_read("data/vector_out");
 
-    std::cout << A.tensor() << std::endl;
+    //Uses operator<< from tensor.hpp
+    std::cout << A.tensor() << std::endl; 
     std::cout << x.tensor() << std::endl;
     std::cout << y_read.tensor() << std::endl;
 

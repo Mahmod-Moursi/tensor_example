@@ -117,6 +117,12 @@ In summary, the use of std::exchange for rank is a more defensive approach, ensu
         return shape;
     }
 
+    // Returns a reference to the vector of values in the tensor.
+    const std::vector<ComponentType>& Get_values() const {
+        return element;
+    }
+
+
     // Returns the number of element of this tensor.
     [[nodiscard]] size_t numElements() const {
         size_t totalelement = 1;
@@ -200,6 +206,7 @@ bool operator==(const Tensor< ComponentType >& a, const Tensor< ComponentType >&
 
     return true;
 }
+
 /*
 // Pretty-prints the tensor to stdout.
 // This is not necessary (and not covered by the tests) but nice to have, also for debugging (and for exercise of course...).
@@ -223,6 +230,27 @@ operator<<(std::ostream& out, const Tensor< ComponentType >& tensor) {
     return out;
 }
 */
+template< Arithmetic ComponentType >
+std::ostream&
+operator<<(std::ostream& out, const Tensor< ComponentType >& tensor)
+{
+    auto values = tensor.Get_values();  // Assuming Get_values is a member function returning the values
+
+    out << "[";
+
+    for (size_t i = 0; i < values.size(); ++i)
+    {
+        out << values[i];
+        if (i < values.size() - 1)
+            out << ", ";
+    }
+
+    out << "]";
+
+    return out;
+}
+
+
 //Reads a tensor from file.
 template< Arithmetic ComponentType >
 Tensor<ComponentType> readTensorFromFile(const std::string& filename) {
